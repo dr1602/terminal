@@ -86,3 +86,79 @@ file README
 // describe el tipo de archivo, con tab se puede autocompletar el nombre del archivo
 
 ```
+
+# Manipulando archivos y directorios
+
+Hablaremos en esta ocasion sobre los comandos para manipular archivos, pero tambien otras variantes del comando ls
+
+```sh
+
+ls -la
+// para ver los directorios, incluso los escondidos
+// se muestran con un punto al principio . , linux los masrtca como ocultos
+
+ls -lS
+// con S mayuscula es S de size, los ordena por tamanio
+
+ls -lr
+// los muestra de reversa
+
+tree
+// muestra todos los directorios como si fuera un arbol, muestra todas las carpetas pero puede no ser user friendly
+
+tree -L 2
+// es de niveles, le puedes decir en cuantos niveles profundice, en este caso 2
+## puede que requieras instalar este comadno y se instala con  snap install tree o apt  install tree
+
+```
+
+Para modificar o crear directorio, se usan los siguientes comandos?
+
+```sh
+
+mkdir miDirectorio
+// de preferencia sin espacios, pero si quieres con espacios, seria de la siguientes manera
+
+mkdir 'Mi Directorio'
+
+touch miArchivo
+// esto crea archivos
+
+# para crear archivos o directorios, se pueden crear muchos a la vez
+
+mkdir dir1 dir2 dir3
+// se crean todos esos directorios
+
+touch file1 file2 file3
+// crea los 3 archivos con sus respectivos nombres
+
+cp file1 file_
+// este comando en primer lugar pone el archivo que quieres copiar, y en segundo con que nombre, si no especificas donde copiarlo, lo copiara en la misma carpeta
+
+mv file_ ..
+// mueve el archivo una carpeta atras
+
+mv file_bk copy
+// cambia el nombre del archivo
+
+rm copy
+// borra el archivo especifico
+
+rm -i miArchivo
+// pone un menu interactivo para confirmar si quieres borrar o no el archivo
+# y borra
+# no lo mantiente
+
+mv test tost
+// mueve la carpeta test dentr tost
+
+rm -r
+// puede borrar archivos
+
+rm -ri
+// puede borrar archivos con flag para confirmar
+
+rm -rf
+// borra todo por default sin preguntarse
+
+```
