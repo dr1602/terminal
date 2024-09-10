@@ -162,3 +162,64 @@ rm -rf
 // borra todo por default sin preguntarse
 
 ```
+
+# Que es un comando?
+
+Un comando puede ser 4 cosas
+
+a. Un programa ejecutable
+b. Un comando de utilidad de la shell: vienen internas en el programa
+c. Una funcoin de shell: funciones de shell externas, existen formas de programar en el shell
+d. Un alias
+
+## Que es un alias?
+
+```sh
+type cd
+// nos dice el tipo de comando que estamos usando
+# cd is a shell builtin
+
+type mkdir
+# mkdir is hashed (/usr/bin/mkdir)
+
+type ls
+# ls is aliased to `ls --color=auto'
+// de hecho no es un comando normal de ls, e inscluso puede recibir parametros
+
+```
+
+Para crear alias haremos lo siguiente
+
+```sh
+alias l='ls -lh'
+// resuimiria todo ese comando a l
+# pero no duran para toda la vida
+total 16K
+-rw-r--r-- 1 root root 4.4K Sep  9 22:43 README.md
+drwxr-xr-x 3 root root 4.0K Sep  9 22:04 tost
+drwxr-xr-x 3 root root 4.0K Sep  9 22:07 tust
+
+// solo perduran si son variables de entorno
+
+help cd
+// te da la informacion de los comandos
+
+ls --help
+// es otra forma de buscar mas informacion de un comando
+
+# help es una utilidad del shell, con otra bash podria no funcionar
+
+man
+# manual deusuario de un ocmando
+
+man cd
+// te da una explicacion detallada de un comando
+
+info cd
+// es muy similar a man
+
+whatis cd
+// te da un descricpcion simple de un comando
+
+
+```
