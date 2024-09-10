@@ -221,5 +221,160 @@ info cd
 whatis cd
 // te da un descricpcion simple de un comando
 
+https://platzi.com/blog/41-comandos-terminal/
+
+https://platzi.com/cursos/bash-shell/
+
+cowsay -f dragon-and-cow s
 
 ```
+
+# Wildcards
+
+Una serie de caracteres especiales que nos permite encontrar patrones o realizar busquedas mucho mas avanzadas, este tipo de busquedas sera con el comando ls, en lugar deusar ls indscriminadameten, mejor usamos wildcards para encontrar cierto patron como .txt, .html o que empiecen con mayuscula.
+
+```sh
+
+mkdir new
+
+touch file.txt dot.txt dot2.txt index.html datos.tsx datos datos123 abc
+
+ls *.txt
+// encuentra los archivos que terminan con txt
+
+ls datos*
+// muestra todos los archivos que empiecen con datos y terminen con cualquier otra cantidad y variedad de datos
+
+ls datos?
+// por favor busca todas las palabras que tengan datos al principios y que solo tenga un caracter al final
+
+ls dato???
+// busca el archivo que comience con dato y que tenga 3 caracteres al final
+
+ls *.html
+// encuentra los archivos que terminan con html
+
+ls [[:upper:]]*
+// muestra solo un caracter con mayuscula y que tenga cualquier terminacion, las wirldcards buscan en al menos dos niveles de contenido de las carpetas.
+
+# las wildcards no son expreisones regulares aunque se parezcan
+
+ls -d [[:upper:]]*
+// para solo buscar las carpetas
+
+ls [[:lower:]]*
+// muestra todos los archivos que empiecen con minuscula
+
+# hacer clases con wildcards
+ls []
+// busqeuda por caracteres
+
+ls [ad]*
+// busca los archivos que empiecen con a o con d y que tenga cualquier terminacion
+
+```
+
+## otros wildcards
+
+https://static.platzi.com/media/public/uploads/command-line-cheat-sheet_f2552bde-3bb0-4b1c-a1a7-dbd40095fa4f.pdf
+
+## Retos de la clase
+
+Crear alias de utilidad, buscar todos los archivos js dentro de script, y buscar archivos que empiecen con numeros
+
+```sh
+
+ls [:alnum:]*
+// Coincide con cualquier caracter alfanumerico
+
+ls [:digit:]*
+// coincide con cualquier numero
+
+# para buscar archivos de tsx
+alias tsx='ls *tsx'
+```
+
+# Redirecciones: como funciona la shell
+
+Ingresamos texto y tenemos un output, aprenderemos a manejar dichas entradas y salidas para tener diferentes utilidades.
+
+Normalmente tenemos una entrada que se le conoce como Standar Input que proviene de nuestro teclado pero tambien lo podemos dirigir desde archivos de texto y se describe como 0 dentro de la terminal. A esos numeros se les conoce como file descriptors.
+
+Tiene dos opciones de salida:
+a. Standar output, que muestre todos los directorios. Su file descriptor es 1.
+b. stderr: que muestre errores is n encuentra nada. Su file descriptor es 2.
+
+```sh
+
+ls
+//para saber que tengo
+
+ls Pictures > mis_archivo.txt
+// redereicciona Pircutres a el nuevo archivo mis_archivo.txt, al menos el nombre
+
+# otra variante
+ls *.txt > mis_archivo.txt
+
+less mis_archivo.txt
+// para ver que hay dentro de mis_archivo.txt
+// tenemos el nombre de todos los archivos que finalizan con .txt
+
+ls *.tsx > mis_archivo.txt
+
+
+less mis_archivo.txt
+// para ver que hay dentro de mis_archivo.txt
+// siempre sobre escribe, no los concatena
+
+# para concatenar:
+
+ls *.txt >> mis_archivo.txt
+
+less mis_archivo.txt
+// para ver que hay dentro de mis_archivo.txt
+// ahora si los concatenalos concatena
+
+
+# que pasa con los errores
+ls adsgfasdgasd
+// marca error
+
+ls adsgfasdgasd > error.txt
+// para mandar al error a un archivo
+// aunque muestre error, si crea el archivo pero no tiene nada, solo redirige el std output, para redirigirlo se necesita es pexificar std error
+
+head error.txt
+// no muestra nada por lo antes mendcionado
+
+ls adsgfasdgasd 2> error.txt
+// mandamos el error
+
+head error.txt
+// ahora si tenemos la info guardada del error
+
+# para redirigr tanto el stdoutput y el error es:
+ls adsgfasdgasd > output.txt 2>&1
+// primero se redirige al error y luego con & tambien con el output
+
+ls Documents > output.txt 2>&1
+less output.txt
+
+```
+
+las redirecciones sirven para, por ejemplo, ver errores despues. Como en un servidor que muestra errores pero que no los guarda, pero hay que tener cuidado porque sobre escribe archivos.
+
+Investiga el stdinput, o como redirigido, y buscar un ejemplo de como utilizarlo.
+
+```sh
+touch input.txt
+
+code input.txt
+
+# redirigin stninput desde un archivo
+cat < input.txt
+
+# es igual a
+cat input.txt
+```
+
+

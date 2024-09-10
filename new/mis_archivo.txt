@@ -1,0 +1,8 @@
+card.tsx
+component.tsx
+datos.tsx
+index.tsx
+dot.txt
+dot2.txt
+file.txt
+mis_archivo.txt
