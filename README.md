@@ -377,4 +377,86 @@ cat < input.txt
 cat input.txt
 ```
 
+# Redireccioens: pipe operator
 
+El pipe operator, permite operar un comenado que su stdop, puede funcionar coo stdin puede desencadenar filtros, encadenamientos, funcionalides, que pueden terminar en la generacion de un archivo.
+
+Antes de comenzar
+
+```sh
+
+echo 'hola Platzi'
+// genera un stdop de cualquier comando que ejecutemos
+
+less error.txt
+
+less output.txt
+
+cat error.txt output.txt
+// sirve para concatenar la salida de los archivos
+
+cat < error.txt
+# ls: cannot access 'adsgfasdgasd': No such file or directory
+
+stdin no se usa tan frecuente en la terminal, tal vez la redireccion pero en casos de uso en especifico, pero es importante como los comandos que nos permiten explorar teto como cat, les, head, tail, hacen uso de esta funconaldiad stin para mostrarlo como stdou
+
+```
+
+## pipe operator
+
+nos permite que el stdout se convierta en el stdin de otro comando como con:
+
+```sh
+ls -lh | less
+// lo redirigimos al comando less e incluso asi podemos buscar cn slash atraves del documento
+
+# asi ya no se necesita crear un archivo
+
+# si se necesita crear un del output despues de verlo con less, seria
+
+ls -lh | less | tee output.txt
+// el tee hace los mismo que la redireccion < permitiendonos dejandolo guardar un archivo incluso dejandolo pasar a traves de los pikes
+
+# para ver que hay dentro del archivo
+cat cat output.txt
+// muestra lo mismo
+
+# el comando lo estamos usando al reves, deberia de ser asi
+ls -lh | tee output.txt | less
+
+cat output.txt
+// con este comando vemos que nos lo crea
+
+
+# otro comando con el pipe perator es pasarlo por un filtro cmo un comando sort que lo va a ordernar
+
+ls -lh *.tsx | sort | tee tsx.txt | less
+
+ls -lh | sort | tee output.txt | less
+# te sales de la consola de comandos con q
+
+cat output.txt
+# es una manera util de buscar
+
+# para instalar a la vaquita y al lol cat
+sudo apt install cowsay
+
+sudo apt install lolcat
+
+cowsay 'hola'
+
+echo 'Hola Platzi' | lolcat
+// lo genera en colores como si fuera arcoiris
+
+# para tener una vaca colorida
+
+cowsay 'Hola Platzi' | lolcat
+
+# para guardar la vaca en un archiv, que pasaria con lol cat?
+# porque al pasar el stoup, seguramente no lo maneja correctamente para dirigirlo a tee
+
+cowsay 'Hola Platzi' | lolcat | tee vaca.txt
+// hay que tenerlo en cuenta
+
+
+```
