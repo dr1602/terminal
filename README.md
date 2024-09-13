@@ -1068,3 +1068,291 @@ https://platzi.com/cursos/expresiones-regulares/
 y grep nos puede servir si sabemos que hemos puesto una linea en especifico y no recordamoes en donde la hemos puesto o como el log, para filtrar todos los errores.
 
 de hecho hay libros enteros para especialziarse en el uso de grep
+
+# Utilidades de la terminal
+
+## utilidades de la red
+
+vamos a la terminal para tener informacion sobre la red, si nos podemos conectar a una pagina, etc.
+
+```sh
+# nos muestra informacion sobre nuestra red, con el nombre de la tarjeta de red, etc
+ifconfig
+
+# pero primero tenemos que instalar el comando con
+apt install net-tools
+
+apt install net-tools
+# es util si necesitamos configurar algun puerto o servidor
+
+# dice si una pagina esta activa
+ping
+
+# como
+ping www.google.com
+
+# si te envia pauqetes es porque esta funcionando
+# sirve para saber si la conexion de red esta funcionando correcta mente,
+# esto sirve de forma recurrente por lo que no se dentendra solo
+
+# trae archivo de manera de texto a traves de la red
+curl
+
+# como el html de google:
+curl www.google.com
+
+# <!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="Kjhstchebw73yjYQn9iZwg">(function(){var _g={kEI:'2bPkZvqACZO5vr0PyMvEiQI',kEXPI:'0,56793,3643512,1076,3,45,538616,2872,2891,43028,30
+
+# lo podriamos guardar asi
+curl www.google.com > index.html
+
+# curl www.google.com > index.html
+#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#                                  Dload  Upload   Total   Spent    Left  Speed
+# 100 21169    0 21169    0     0  64246      0 --:--:-- --:--:-- --:--:-- 64148
+
+# trae desde internet, funciona similar a curl, pero lo descarga, el archivo directamente a la computadora, y se usa mucho para la instalacion de archivo o comando
+wget www.facebook.com
+
+# wget www.facebook.com
+--2024-09-13 15:55:15--  http://www.facebook.com/
+Resolving www.facebook.com (www.facebook.com)... 157.240.25.35, 2a03:2880:f135:181:face:b00c:0:25de
+Connecting to www.facebook.com (www.facebook.com)|157.240.25.35|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://www.facebook.com/ [following]
+--2024-09-13 15:55:15--  https://www.facebook.com/
+Connecting to www.facebook.com (www.facebook.com)|157.240.25.35|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.facebook.com/unsupportedbrowser [following]
+--2024-09-13 15:55:15--  https://www.facebook.com/unsupportedbrowser
+Reusing existing connection to www.facebook.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html.1’
+
+index.html.1                [ <=>                           ]  48.43K  --.-KB/s    in 0.02s
+
+2024-09-13 15:55:15 (1.89 MB/s) - ‘index.html.1’ saved [49595]
+
+
+# nos dice cuando visitamos un sitio o direccion ip, a todos los puntos, o computadoras por las que vamos a pasar
+traceroute www.google.com
+
+# pero antes hay que instalar el comando con
+
+apt install inetutils-traceroute  # version 2:2.2-2ubuntu0.1, or
+apt install traceroute            # version 1:2.1.0-2
+
+# esta es la ruta que tomamos
+
+traceroute to www.google.com (192.178.56.228), 64 hops max
+  1   172.17.160.1  0.710ms  0.606ms  0.423ms
+  2   192.168.1.254  4.842ms  4.994ms  1.485ms
+  3   200.38.193.226  7.287ms  7.099ms  4.562ms
+  4   189.246.170.226  9.095ms  6.092ms  7.192ms
+  5   189.247.252.37  8.770ms  10.383ms  6.963ms
+  6   *  *  *
+  7   142.251.78.52  19.759ms  14.262ms  17.869ms
+  8   192.178.80.209  13.135ms  16.960ms  10.822ms
+  9   192.178.56.228  9.711ms  20.097ms  12.518ms
+root@DESKTOP-JGJI4A4:~# traceroute www.platzi.com
+
+# ahora vamos platzi
+traceroute www.platzi.com
+
+  1   172.17.160.1  0.374ms  0.356ms  0.371ms
+  2   192.168.1.254  2.351ms  1.688ms  1.746ms
+  3   200.38.193.226  3.739ms  6.232ms  5.772ms
+  4   189.246.170.226  9.077ms  6.863ms  6.369ms
+  5   189.247.38.209  7.685ms  11.688ms  12.767ms
+  6   104.17.31.222  12.521ms  11.880ms  12.939ms
+
+traceroute www.github.com
+
+traceroute to github.com (140.82.112.3), 64 hops max
+  1   172.17.160.1  0.512ms  0.368ms  0.380ms
+  2   192.168.1.254  1.961ms  1.747ms  2.624ms
+  3   200.38.193.226  8.666ms  11.786ms  5.034ms
+  4   201.154.119.222  37.870ms  39.357ms  39.745ms
+  5   128.241.8.232  36.813ms  36.635ms  38.024ms
+  6   129.250.7.112  37.045ms  38.476ms  37.650ms
+  7   *  *  *
+  8   129.250.2.57  66.415ms  66.244ms  82.200ms
+  9   129.250.196.98  69.595ms  68.327ms  66.368ms
+ 10   *  *  *
+ 11   *  *  *
+ 12   *  *  *
+ 13   *  *  *
+ 14   *  *  *
+ 15   *  *  *
+ 16   *  *  *
+ 17   *  *  *
+ 18   *  *  *
+ 19   *  *  *
+ 20   *  *  *
+ 21   *  *  *
+ 22   *  *  *
+ 23   *  *  *
+
+# sirve si no squeremos conectar al servidor remoto, pero en una infraestructura privada, puede que alguna este fallando.
+
+# el ultimo comando es
+
+# para mostrar los dispositivos de red
+netstat -i
+
+Kernel Interface table
+Iface      MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+docker0   1500        0      0      0 0             0      0      0      0 BMU
+eth0      1492     2799      0      0 0          2068      0      0      0 BMRU
+lo       65536   271012      0      0 0        271012      0      0      0 LRU
+
+# nos muestra de forma amigable nuestros dispotivios de red, si trabajan o no y si hay errores.
+
+```
+
+esto es muy util si quieres dedicarte a ciber seguridad, hay cursos de redes en platzi
+
+https://platzi.com/cursos/redes/
+
+## comprimiendo archivos tar y zip
+
+aprenderemos a hacer este tipo de archivos que encapsulan muchos archivos o carpetas.
+
+antes de comprimir neceistamos saber que comprimir
+
+```sh
+
+mkdir toCompress
+
+# creamos archivos
+touch file file2 file3 file4
+
+# vemos que hay dentro
+tree toCompress/
+
+# toCompress/
+├── file1
+├── file2
+├── file3
+├── file4
+└── file5
+
+0 directories, 5 files
+
+# vamos a comprimirlos en el formato tar, que se usa mucho en repos, para comprimir usamos tar, con la opcion c de comprimir con v que nos muestre que es lo que hara en terminal y f que comprimira un file y debemos poner el nombre de el o los archivos
+
+tar -cvf
+
+# como
+tar -cvf toCompress.tar toCompress
+
+# esto es lo que hizo
+# tar -cvf toCompress.tar toCompress
+toCompress/
+toCompress/file2
+toCompress/file5
+toCompress/file4
+toCompress/file3
+toCompress/file1
+
+# .tar es una buena opcion pero existe otra mejor con el comando tar, y es agregando un z., con gzip que es un algoritmo muy eficiente sobre todo de texto plano
+
+# es casi el mismo comando pero agregando z y .gz
+
+tar -cvzf toCompress.tar.gz toCompress
+
+# queda
+
+tar -cvzf toCompress.tar.gz toCompress
+toCompress/
+toCompress/file2
+toCompress/file5
+toCompress/file4
+toCompress/file3
+toCompress/file1
+
+# y veremos las carpetas
+ls
+
+# quedan
+README.md  index._alt.html    movies.csv  sinthe.txt  toCompress.tar     tust
+bin        index.html         new         test        toCompress.tar.gz  vaca.txt
+error.txt  input.txt          output.txt  to          tost
+holi       misdocumentos.txt  sandbox     toCompress  tsx.txt
+
+
+```
+
+para descomprimir
+
+```sh
+
+rm -rf toCompress && ls
+
+# sera casi los mismo comandos pero en lugar de c, usaremos el comando x para poder descomprimir
+tar -xzvf toCompress.tar.gz && ls
+
+# quedando como
+
+# tar -xzvf toCompress.tar.gz
+toCompress/
+toCompress/file2
+toCompress/file5
+toCompress/file4
+toCompress/file3
+toCompress/file1
+
+# viendo como quedo
+ls
+
+# quedando
+
+README.md  index._alt.html    movies.csv  sinthe.txt  toCompress.tar     tust
+bin        index.html         new         test        toCompress.tar.gz  vaca.txt
+error.txt  input.txt          output.txt  to          tost
+holi       misdocumentos.txt  sandbox     toCompress  tsx.txt
+
+```
+
+siguiente formato de compresion .zip
+
+```sh
+
+# si no lo tienes instalado puedes instalarlo con apt
+
+# una vez instalado puedes comprimirlo
+
+zip -r toCompressZip.zip toCompress
+
+#  zip -r toCompressZip.zip toCompress
+  adding: toCompress/ (stored 0%)
+  adding: toCompress/file2 (stored 0%)
+  adding: toCompress/file5 (stored 0%)
+  adding: toCompress/file4 (stored 0%)
+  adding: toCompress/file3 (stored 0%)
+  adding: toCompress/file1 (stored 0%)
+
+# para ver
+ls
+
+# quedando
+
+README.md  index._alt.html    movies.csv  sinthe.txt  toCompress.tar     tsx.txt
+bin        index.html         new         test        toCompress.tar.gz  tust
+error.txt  input.txt          output.txt  to          toCompressZip.zip  vaca.txt
+holi       misdocumentos.txt  sandbox     toCompress  tost
+
+# para descomprimir se utiliza el comando unzip
+
+unzip toCompressZip.zip
+
+# quedando como
+README.md  index._alt.html    movies.csv  sinthe.txt     toCompress         tost
+bin        index.html         new         test           toCompress.tar     tsx.txt
+error.txt  input.txt          output.txt  theZipUncompr  toCompress.tar.gz  tust
+holi       misdocumentos.txt  sandbox     to             toCompressZip.zip  vaca.txt
+
+```
+
+es importante saber comprimir archivos con terminar para poderlos filtar y luego comprimirlas con un par de lineas
