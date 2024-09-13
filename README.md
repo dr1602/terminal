@@ -460,3 +460,177 @@ cowsay 'Hola Platzi' | lolcat | tee vaca.txt
 
 
 ```
+
+# Operadores de control
+
+Son simbolos reservados que permiten encadenar comandos, ya sea de manera sincrona o asincrona
+como
+
+```sh
+
+ls; mkdir holi; cal
+
+encadena los comandos que son leer, crear y mostrar calendario
+
+// antes de ejecutar cal, se necesita instalar con:
+apt install ncal
+
+// se ejecutan de manera sincrona
+ls; mkdir holi; cal
+
+README.md  error.txt  holi  input.txt  new  output.txt  tost  tsx.txt  tust  vaca.txt
+mkdir: cannot create directory ‘holi’: File exists
+   September 2024
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30
+
+# ahora lo vamos a ejecutar de manera asincrona con un hilo de procesador con cada linea de comandos que se ejecuten pero hay que tener cuidado para que los comandos no se ejecuten indefindamente, se hacen cada comando con una consola aparte en segundo plano
+
+ls & date & cal
+
+[1] 30518
+[2] 30519
+   September 2024
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30
+
+README.md  error.txt  holi  input.txt  new  output.txt  tost  tsx.txt  tust  vaca.txt
+Fri Sep 13 10:18:47 CST 2024
+[1]-  Done                    ls --color=auto
+[2]+  Done                    date
+
+```
+
+ahora veremos como correr comandos de forma condicional
+
+```sh
+# para hacerlo de forma condicional se usa &&
+
+mkdir test && cd test
+
+root@DESKTOP-JGJI4A4:~/terminal# mkdir test && cd test
+root@DESKTOP-JGJI4A4:~/terminal/test#
+
+
+# que pasaria si hago esto con forma incorrecta?
+
+mir test && cd tost && echo 'carpeta creada'
+
+cd tesdadst && cd tost && echo 'carpeta creada'
+
+//cd tesdadst && cd tost && echo 'carpeta creada'
+//bash: cd: tesdadst: No such file or directory
+
+# para poder ejecutar comandos aunque sea de forma incorrecta tipo asincrono pero no es asincrono porque no crea nuevos hilos
+
+cd tesdadst || touch archiv.tsx || ls || echo 'carpeta creada'
+
+// cd tesdadst || touch archiv.tsx || ls || echo 'carpeta creada'
+// bash: cd: tesdadst: No such file or directory
+// root@DESKTOP-JGJI4A4:~/terminal/test# ls
+// archiv.tsx
+
+cd asdsdfasdf || echo 'Cambio de directorio'
+
+// cd asdsdfasdf || echo 'Cambio de directorio'
+// bash: cd: asdsdfasdf: No such file or directory
+// Cambio de directorio
+
+```
+
+para desarrollo web te puedes enfrentar a webpack para ver desarrollo de manera activa, webpack ve si se ejecuta un archivo, si se ejeceuta de forma correcta, ejecuta otros mas.
+
+## reto
+
+hacer la ejecucion donde si se vea que el archivo se creo exitosamente.
+
+```sh
+cd tesdadst || touch segundo_test.tsx; ls && echo 'carpeta creada'
+
+// cd tesdadst || touch segundo_test.tsx; ls && echo 'carpeta creada'
+// bash: cd: tesdadst: No such file or directory
+// archiv.tsx  segundo_test.tsx
+// carpeta creada
+```
+
+# Como se manejan los permisos:
+
+## Tipos de archivos
+
+Tipos de archivo, que incluso se ven con ls para ver el tipo de permiso, son:
+
+- archivo normal
+  d un directorio
+  l un link simbolico
+  b archivo de bloque especial, son archivos que manejan informacion la informacion de los bloque sde datos de una USB
+
+## Tipo de modo
+
+dentro de los permisos de cada archivo son de 3 grandes partes que son:
+
+1. duenio
+2. grupo (compartido entre varios usuarios)
+3. world (mundo u otros, aquellos que no son duenios o grupo)
+
+Existen 3 tipos de permisos
+r - read
+w - write
+x - execute
+
+cuando asignamos un permiso, lo encendemos, se le asigna un 1, en este slide los permisos son:
+
+duenio: r - 1, w - 1, x - 1
+grupo: r - 1, w - 0, x - 1
+world: r - 1, w - 0, x - 1
+
+Como son 3 permisos, la representacion se pueden hacer en trail bits o sistema octal, y los permisos los podemos mostrar mediante un modo octa. Con esos bits, como seria su represnetacion en modo octa?
+
+## propuesta de solucion
+
+Permiso Octal Significado
+--- 0 Sin permisos
+--x 1 Solo ejecución
+-w- 2 Solo escritura
+-wx 3 Escritura y ejecución
+r-- 4 Solo lectura
+r-x 5 Lectura y ejecución
+rw- 6 Lectura y escritura
+rwx 7 Lectura, escritura y ejecución
+
+Cuando aplicas permisos a un archivo o directorio, se utilizan tres números octales, uno para cada categoría (usuario, grupo, y otros). Por ejemplo:
+
+rwxr-xr-x:
+Usuario (u): rwx = 7
+Grupo (g): r-x = 5
+Otros (o): r-x = 5
+Notación Octal Completa: 754
+
+rw-r--r--:
+Usuario (u): rw- = 6
+Grupo (g): r-- = 4
+Otros (o): r-- = 4
+Notación Octal Completa: 644
+
+rwx------:
+Usuario (u): rwx = 7
+Grupo (g): --- = 0
+Otros (o): --- = 0
+Notación Octal Completa: 700
+
+## Modo simbolico
+
+se pueden asignar permisos tacitamente desde la terminal con algunos comandos, y esta asignacion se puede hacer con simbolos que son:
+
+u - solo para el usuario
+g - solo para el grupo
+o - solo para otros o todo el mundo
+a - aplica para todos
+
