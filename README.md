@@ -863,3 +863,113 @@ sirve para abreviar alias
 como los alias de git
 
 ```
+
+# Comandos de busqueda
+
+Nos ayuda a encontrar archivos o directorios, dependeiendo de su extension, nombre, donde se encuentran, etc, es muy poderoso para encontrar archivos .log que recopilan la informacion de un archivo en ejecucion, como en google chrome para saber que paginas visitas, create show, pueden ser molestos y despues se deben borrar.
+
+```sh
+which
+# nos ayuda a encontrar la ruta de nuestros binarios
+
+which cd
+# busca en todoa la ruta del path para encontrar un binario pero no lo encontro porque es una utilidad del bash
+
+which code
+# dice donde esta alocado
+#  which code
+# /mnt/c/Users/DELL/AppData/Local/Programs/Microsoft VS Code/bin/code
+
+# ojo, solo funciona en terminal de ubuntu no en la terminal de vsc
+
+which obs
+# para grabar pantalla
+# tampoco funciono
+
+find
+# find nos permite encontrar un archivo y lo primero que debemos poner es la ruta donde comenzaremos a buscar este archivo como en
+
+# desde home
+find ./ -name file
+
+# ./penta/node_modules/@babel/core/lib/transformation/file
+# ./.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/rust-by-example/std_misc/file
+# ./curso-s-practico/web/node_modules/@babel/core/lib/transformation/file
+# ./curso-s-practico/web/node_modules/react-scripts/node_modules/@babel/core/lib/transformation/file
+
+# lo importante es que puede usar wild cards como en
+find ./ -name *.txt
+
+# GAL.txt
+# ./platzi-nextjs/node_modules/next/dist/compiled/@edge-runtime/primitives/abort-controller.js.LEGAL.txt
+# ./platzi-nextjs/node_modules/semantic-ui-react/dist/umd/semantic-ui-react.min.js.LICENSE.txt
+# ^C
+
+# podemos combinarlo con less y el pipe operator
+
+find ./ -name *.txt | less
+
+# ./curso-rn-expo/node_modules/@babel/regjsgen/LICENSE-MIT.txt
+# ./curso-rn-expo/node_modules/json-schema-deref-sync/LICENSE.txt
+# ./curso-rn-expo/node_modules/whatwg-url/LICENSE.txt
+
+# otro modificador de find es buscar por tipes
+# files solo archiv
+# d solo directorios
+find ./ -type fd
+find ./ -type d
+find ./ -type f
+
+find ./ -type d -name
+
+find ./ -type d -name new
+
+# root@DESKTOP-JGJI4A4:~/terminal# find ./ -type d -name new
+# ./new
+
+# vamos a comenar a buscar nuestros logs
+find ./ -type f -name *.log
+
+# ./blogeek-platzi/node_modules/spdx-exceptions/test.log
+# ./.docker/desktop/log/host/docker-desktop-user-distro.log
+# ./curso-s-practico/web/node_modules/nwsapi/dist/lint.log
+# ./curso-s-practico/web/node_modules/simple-swizzle/node_modules/is-arrayish/yarn-error.log
+# ./curso-s-practico/solana-movies/.anchor/test-ledger/validator-1690409914964.log
+# ./curso-s-practico/solana-movies/.anchor/test-ledger/rocksdb/000055.log
+# ./curso-s-practico/solana-movies/.anchor/program-logs/Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS.solana_movies.log
+# ./curso-intro-react/project/node_modules/nwsapi/dist/lint.log
+# ./.cache/com.vercel.cli/package-updates/vercel-latest.log
+# ^C
+
+# como encontrar archivos por tamanio, sin importar el tipo de archivo
+
+find ./ -size 20M
+
+#  find ./ -size 20M
+# ./.yarn/berry/cache/next-npm-13.5.6-306005c39c-8.zip
+# ./.local/share/solana/install/releases/1.16.4/solana-release/bin/solana-tokens
+# ./.cargo/git/checkouts/anchor-bf03d42499b9267c/b7e91d4/tests/auction-house/deps/metaplex/.git/objects/pack/pack-af17eb4d6edafd6b098db14bc8bcbd6ed06f1c5d.pack
+
+whereis
+# Este comando localiza los ficheros binarios, fuentes y páginas del manual de un programa
+
+```
+
+existe otro paramaetro llamado 'exec', que una vez que encontramos un archivo, el 'exec' los ejecutara, como por ejemplo, los node modules para que se puedan elimnar de tus archivos.
+
+## reto de la clase
+
+buscar todos los archivos txt, guarda el output del archivo en mis documentos .txt, y que con echo despliege: archivos guardados exitosamente.
+
+```sh
+
+find ./ -name *.txt | less | tee misdocumentos.txt && echo 'Archivo Guardado con exito'
+
+# codigo corregido
+find ./ -name "*.txt" | less | tee misdocumentos.txt && echo 'Archivo Guardado con éxito'
+
+
+# comando base para el ejercicio
+# ls -lh | less | tee output.txt
+
+```

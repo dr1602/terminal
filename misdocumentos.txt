@@ -1,0 +1,11 @@
+./misdocumentos.txt
+./new/dot.txt
+./new/dot2.txt
+./new/file.txt
+./new/mis_archivo.txt
+./tsx.txt
+./sandbox/mitext.txt
+./error.txt
+./output.txt
+./input.txt
+./vaca.txt
