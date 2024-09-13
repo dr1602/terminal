@@ -1505,3 +1505,76 @@ google-chrome-stable
 
 
 ```
+
+### Bonus
+
+Curso de Creación de Lenguajes de Programación: Intérpretes
+https://platzi.com/cursos/interpretes-software/
+
+## Editores de texto en la terminal
+
+Una de las utilidades mas interesantes son los editores de texto dentro de la terminal.
+El que utilizaremos en clase sera vim.
+
+Existen otras opciones como imax y nano, pero es cuestion de gustos. Existen 2 versiones de vim
+
+```sh
+# vi anterior
+vi
+
+#vi moderno
+vim
+
+# para salirte puedes usar
+CTRL + C
+CTRL + C
+:qa!
+ENTER
+
+# vim tiene version normal y de insersion, con insert podemos escribir
+# con la tecla i podemos poner el modo insertar, escrbiendo directamente
+
+#con
+ESC
+/
+/titulo
+
+podemos buscar con lamisma coincidencia.
+
+# para salir es con esc
+ESC
+
+# para eliminar linea, en modo normal, y nos ponemos en la linea, y presionamos dos veces dd
+
+# para guardar el texto es con
+ESC
+:w
+
+# para salir
+:wq
+
+# luego
+cat index.html
+
+# para crear un archivo de py
+vim ejemplo.py
+
+# para ver como resalta la sintaxis del lenguaje
+#! forza la salida
+:qa!
+
+# para salirte de vim, hay que presionar
+:q
+
+# para crear un archivo de texto en vim
+vim index.html
+
+
+```
+
+Documentacion:
+
+https://linuxhint.com/vim_syntax_highlighting/
+https://www.gnu.org/software/emacs/documentation.html
+https://www.vim.org/docs.php
+https://www.nano-editor.org/
