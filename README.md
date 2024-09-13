@@ -973,3 +973,98 @@ find ./ -name "*.txt" | less | tee misdocumentos.txt && echo 'Archivo Guardado c
 # ls -lh | less | tee output.txt
 
 ```
+
+# Uso del comando grep
+
+Nos permite encontrar coincidencia s de una busqueda dentro de cualquier texto como por ejemplo, un stdo.
+
+usaremos grep para encontrar coincidencias en el archivo movies.csv
+
+```sh
+
+# encontrar todas las peliculas con la palabra towers, dentro del archivo x
+# el primer parametro es una expresion regular, que es una herramienta versatil para hacer busquedas
+grep Towers movies.csv
+
+# grep Towers movies.csv
+# 108583,Fawlty Towers (1975,Comedy,-1980,1,54
+# 5952,"Lord of the Rings: The Two Towers, The",Adventure|Fantasy,2002,4,81
+
+# ahora vamos encontrar todas las lineas o coincidencias que tengan the en movies.csv
+
+grep the movies.csv
+# pero no tenemos ningun the que sea al inicio de manera general
+# 5002,Fritz the Cat,Animation,1971,3,79
+# 5569,"Last House on the Left, The",Crime|Horror|Thriller,1971,2,53
+# 6666,"Discreet Charm of the Bourgeoisie, The (Charme discret de la bourgeoisie, Le)",Comedy|Drama|Fantasy,1971,1,96
+# 26271,Lady Sings the Blues,Drama|Musical,1972,4,82
+# 2531,Battle for the Planet of the Apes,Action|Sci-Fi,1973,2,94
+# 6230,Bang the Drum Slowly,Drama,1972,1,60
+# 6613,"Day of the Dolphin, The",Drama,1973,5,56
+# 7482,Enter the Dragon,Action|Crime,1973,8,100
+# 7889,Pat Garrett and Billy the Kid,Western,1973,10,90
+
+# por tanto haremos la busqueda case sensitive, las busqueadas tienden a ser case sensitive para eso agregamos
+
+# con la opcion -i se agrega el ignore case sensitive
+grep -i the movies.csv
+# asi encontramos todas las coincidencias incluso las que empiezan con The
+
+# 159858,The Conjuring 2,Horror,2015,3,84
+# 159972,Approaching the Unknown,Drama|Sci-Fi|Thriller,2016,10,52
+# 160563,The Legend of Tarzan,Action|Adventure,2016,1,50
+# 160565,The Purge: Election Year,Action|Horror|Sci-Fi,2015,6,96
+# 161336,Author: The JT LeRoy Story,Documentary,2015,3,61
+# 161918,Sharknado 4: The 4th Awakens,Action|Adventure|Horror|Sci-Fi,2016,10,51
+# 163949,The Beatles: Eight Days a Week - The Touring Years,Documentary,2016,6,82
+
+grep -i the movies.csv | less
+
+# si quiero saber el numero de ocurrencias usaremos
+grep -c -i the movies.csv
+# grep -c -i the movies.csv
+# 2912
+
+# o solo con minuscula
+
+grep -c the movies.csv
+# grep -c the movies.csv
+# 1013
+
+# ahora encontraremos a todas las peliculas que no coincidan, ignorando si empiezan o no con mayuscual
+grep -vi the movies.csv
+
+# esto lo guardaremos en un archivo
+
+grep -vi the movies.csv > sinthe.txt && ls && cat sinthe.txt
+
+# se puede hacer un ls y pasarlo con un grep
+
+# tambiern veremos el comando wc, que sirve para saber cuantas palabras hay
+
+# linea | caracteres| numero de bits
+wc movies.csv
+# wc movies.csv
+# 9126  30006 477779 movies.csv
+
+# tiene -l que cuenta el numero de lineas.
+wc -l movies.csv
+# 9126 movies.csv
+
+# tiene -w que cuenta las palabras.
+# wc -w movies.csv
+30006 movies.csv
+
+# -c da el numero de bit
+wc -c movies.csv
+# 477779 movies.csv
+
+```
+
+usa expresiones regulares que sirven para la busqueda, aqui el enlace para el curso.
+
+https://platzi.com/cursos/expresiones-regulares/
+
+y grep nos puede servir si sabemos que hemos puesto una linea en especifico y no recordamoes en donde la hemos puesto o como el log, para filtrar todos los errores.
+
+de hecho hay libros enteros para especialziarse en el uso de grep
