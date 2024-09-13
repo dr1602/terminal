@@ -1356,3 +1356,93 @@ holi       misdocumentos.txt  sandbox     to             toCompressZip.zip  vaca
 ```
 
 es importante saber comprimir archivos con terminar para poderlos filtar y luego comprimirlas con un par de lineas
+
+## manejo de procesos
+
+manera de manejar procesos es diferentes, como matarlos, visualizarlos, manejarlos o filtarlso.
+
+Basicos de manejo de procesos
+
+```sh
+
+# muestra los procesos o comandos corriendo en nuestra terminal acutalmente, todo proceso tien un pid o id, y muestra su respectivo bash
+ps
+
+# quedando
+
+    PID TTY          TIME CMD
+    711 pts/0    00:00:00 bash
+  67494 pts/0    00:00:00 bash
+ 124076 pts/0    00:00:00 ps
+
+# esto es muy util con comandos asincronos
+# como
+
+cat & ls
+
+# luego
+ps
+
+# queda
+
+    PID TTY          TIME CMD
+    711 pts/0    00:00:00 bash
+  67494 pts/0    00:00:00 bash
+ 124686 pts/0    00:00:00 cat
+ 124697 pts/0    00:00:00 ps
+
+# util para saber que procesos corren en bg
+
+cat & ls
+
+# luego
+ps
+
+# queda
+
+    PID TTY          TIME CMD
+    711 pts/0    00:00:00 bash
+  67494 pts/0    00:00:00 bash
+ 124686 pts/0    00:00:00 cat
+ 124928 pts/0    00:00:00 cat
+ 124983 pts/0    00:00:00 ps
+
+# pero ahora, como hacemos para para un subproceso
+
+# si nosotors queremos terminar esos proceso, copiamos pid, utilizamos el comando kill
+
+kill 124686 && ps
+
+# quedando
+
+    PID TTY          TIME CMD
+  48602 pts/6    00:00:00 bash
+  55649 pts/6    00:00:00 su
+  55650 pts/6    00:00:00 bash
+  68711 pts/6    00:00:00 bash
+ 122115 pts/6    00:00:00 git
+ 125568 pts/6    00:00:00 ps
+
+# si lo mato pero en clase no
+
+# para solucionarlo si pasa, existe el comando top
+# donde se mostraran los porcesos que usan mas recursos
+top
+
+# con la letra h podemos tener una consola de ayuda con los comandos disponibles
+# con u lo filtra por usuario
+
+# kill sirve para matar procesos, incluso la terminal si se nos quedan atascados procesos
+
+# tambien existen htop
+htop
+
+# bpytop pero antes hay que instalarlo, en este caso, con wsl:
+apt install bpytop
+
+# y usar, que es una interfaz muy grafica similar al comando top
+bpytop
+
+```
+
+la terminal es mas efectiva que cualquier administrador de tareas
