@@ -1,0 +1,1 @@
+Hola, esto es la creacion de texto desde la terminal para modificar un archivo

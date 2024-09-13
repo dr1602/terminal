@@ -634,3 +634,110 @@ g - solo para el grupo
 o - solo para otros o todo el mundo
 a - aplica para todos
 
+# Modificando permisos con la terminal
+
+Existen diferentes tipos de ususarios y los podemos cambiar ocn la terminal como el usuario root que tiene privilegios para hacer de todo pero nencesitamos saberlo manejar de manera adecuada.
+
+## Manejo de permisos con nuestr usuario y usuario root
+
+```sh
+
+mkdir sandbox
+
+> mitexto.txt
+// para crear archivo de texto
+
+# para procesar texto
+cat > mitext.txt
+
+y ctrl + d para dejar de escribir
+
+cat mitexto.txt
+
+# root@DESKTOP-JGJI4A4:~/terminal/sandbox# > mitext.txt && ls
+# mitext.txt
+# root@DESKTOP-JGJI4A4:~/terminal/sandbox# cat > mitext.txt
+# Hola, esto es la creacion de texto desde la terminal para modificar un archivo
+# root@DESKTOP-JGJI4A4:~/terminal/sandbox# cat mitexto.txt
+# cat: mitexto.txt: No such file or directory
+# root@DESKTOP-JGJI4A4:~/terminal/sandbox# cat mitext.txt
+# Hola, esto es la creacion de texto desde la terminal para modificar un archivo
+# root@DESKTOP-JGJI4A4:~/terminal/sandbox#
+
+// para ver los permisos dentro del archivo usamos
+ls -l
+
+# ls -l
+# total 4
+# -rw-r--r-- 1 root root 79 Sep 13 13:32 mitext.txt
+
+/ para cambiar los permisos, usamos
+chmod 755 mitext.txt
+
+/ y para valdiar que se otorgaron los permisos
+ls -l
+
+# total 4
+# -rwxr-xr-x 1 root root 79 Sep 13 13:32 mitext.txt
+
+/ vamos a quitarle los permisos de letura pero solo al usuario y de modo simbolico
+
+chmod u-r mitext.txt
+ls -l
+
+chmod u-r mitext.txt && ls -l
+# total 4
+# --wxr-xr-x 1 root root 79 Sep 13 13:32 mitext.txt
+
+cat mitext.txt
+# cat mitext.txt
+# Hola, esto es la creacion de texto desde la terminal para modificar un archivo
+
+/ en teoria deberia de quitar los permisos de read pero no lo hizo
+
+# para devolver los permisos
+
+chmod u+r mitext.txt && ls -l && cat mitext.txt
+# total 4
+# -rwxr-xr-x 1 root root 79 Sep 13 13:32 mitext.txt
+# Hola, esto es la creacion de texto desde la terminal para modificar un archivo
+
+# para modificar permisos de una forma mas avanzada, para asignar diferentes permisos en una sola ejecucion. sobre escribe los permisos, no los complementa
+chmod u-x,go=w mitext.txt && ls -l && cat mitext.txt
+# total 4
+# -rw--w--w- 1 root root 79 Sep 13 13:32 mitext.txt
+# Hola, esto es la creacion de texto desde la terminal para modificar un archivo
+```
+
+ahora veremos como cambiar de usaurio
+
+```sh
+
+# para saber quienes somos:
+whoami
+# root
+
+# otro camando para tener el uid, el nombre de nuestro usuario que puede ser 1000 o 500, y nos da info extra de a que gurpos llega a pertenecer
+id
+# uid=0(root) gid=0(root) groups=0(root),999(docker)
+
+# no veremos todos porque podria ser un curso aparte
+
+# para cambiarnos a un usuario, usaremos
+su root
+# su root
+# root@DESKTOP-JGJI4A4:~/terminal# whoami
+# root
+
+pwd
+# pwd
+# /root/terminal
+
+ls -l
+# total 4
+# -rw-r--r-- 1 root root  0 Sep 13 13:50 codebars
+# -rw--w--w- 1 root root 79 Sep 13 13:32 mitext.txt
+
+# para obtener permisos de root
+sudo rm rootfile
+```
