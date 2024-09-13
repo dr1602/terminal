@@ -1446,3 +1446,62 @@ bpytop
 ```
 
 la terminal es mas efectiva que cualquier administrador de tareas
+
+## procesos en foregorund y background
+
+```sh
+
+# para editar un archivo desde la consola
+cat > mi_nota.txt
+
+# para suspender el proceso
+CTRL + Z
+
+# quedando
+
+con esto puedo editar desde la terminal de wsl^Z
+[3]+  Stopped                 cat > mi_nota.txt
+
+# hemos movido nuestro comando de forma exitosa al background
+
+# para consultar todos los comandos en el bg usamos el comando jobs
+
+# tenemos que usar el numero de trabajo, que en este caso es el trs y que no es los mismo que el PID
+
+fg 3
+
+# quedando
+
+#  fg 3
+cat > mi_nota.txt
+
+# de desta forma podremos seguir editando en esta consola
+
+# para terminar el input y guardar, podesmo usar
+CTRL + D
+
+# otra forma de mandar directamente al background es con el comand & al final
+
+cat > mi_nota.txt &
+
+# quedando
+
+# cat > mi_nota.txt &
+[3] 133718
+
+fg 3
+cat > mi_nota.txt
+^Z
+[3]+  Stopped                 cat > mi_nota.txt
+root@DESKTOP-JGJI4A4:~/terminal# bg 3
+[3]+ cat > mi_nota.txt &
+
+[3]+  Stopped                 cat > mi_nota.txt
+
+
+# para abrir programa de interfaz grafica desde la terminal, en este caso google
+
+google-chrome-stable
+
+
+```
