@@ -1591,3 +1591,11 @@ ya no esta tilix para WSL, pero un tutorial recomendado es:
 
 https://platzi.com/tutoriales/1748-terminal/8505-configurando-wsl2-windows-terminal-y-oh-my-zsh/
 
+# Libros recomendados
+
+Linux basics for hackers
+The linux command line
+Grep
+Regular Expression
+Linux
+vi and vim Editors
