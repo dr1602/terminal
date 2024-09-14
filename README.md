@@ -1578,3 +1578,16 @@ https://linuxhint.com/vim_syntax_highlighting/
 https://www.gnu.org/software/emacs/documentation.html
 https://www.vim.org/docs.php
 https://www.nano-editor.org/
+
+## Personalizar la terminal de comandos
+
+Con colores, iconos, fuente, para sentirnos comodos con el uso de nuestra terminal y con diferenciadores para saber si un repo esta activo o si estamos en el directorio correctorio.
+
+Usaremos tilix, cambiaremos el editor
+
+Puede variar entre sistemas operativos, sobre todo para los sistemas linux, es casi lo mismo para wsl, excepto para el emulador de terminal
+
+ya no esta tilix para WSL, pero un tutorial recomendado es:
+
+https://platzi.com/tutoriales/1748-terminal/8505-configurando-wsl2-windows-terminal-y-oh-my-zsh/
+
